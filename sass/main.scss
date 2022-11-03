@@ -1,0 +1,26 @@
+@import './colors';
+@import './components';
+@import './mixins';
+
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: #000;
+    background: linear-gradient(10deg, #2483ff 60%, #2c6afb 60%);
+    width: 100vw;
+    
+  }
