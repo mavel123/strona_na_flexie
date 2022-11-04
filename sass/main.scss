@@ -16,14 +16,28 @@ html {
 
 body {
 	height: 100vh;
- 
+
 	font-family: 'Open Sans', sans-serif;
-	
+
 	font-size: 1.6rem;
 	color: $pure-white;
 	background: $pure-white;
 	width: 100vw;
+	color: black;
 }
+
+@keyframes navItemsAnimation {
+	from {
+		transform: translateX(200%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+.nav-items-animation {
+	animation: navItemsAnimation 1s both;
+}
+
 //NAV
 .burger-btn {
 	position: fixed;
@@ -31,16 +45,17 @@ body {
 	right: 20px;
 	width: 50px;
 	height: 50px;
-	
+
 	background: none;
 	border: 1px solid transparent;
 	cursor: pointer;
-	z-index: 100;
-    &:hover{
-      .burger-btn__bars::after, .burger-btn__bars::before{
-        width: 100%;
-      }
-    }
+	z-index: 1010;
+	&:hover {
+		.burger-btn__bars::after,
+		.burger-btn__bars::before {
+			width: 100%;
+		}
+	}
 	&:focus {
 		outline: none;
 		border: 1px solid rgba(255, 255, 255, 0.5);
@@ -50,63 +65,253 @@ body {
 		position: relative;
 		width: 50px;
 		height: 50px;
-    padding: 10px;
-    
+		padding: 10px;
 	}
 	&__bars,
 	&__bars::after,
 	&__bars::before {
-    @include burgerBtn;
+		@include burgerBtn;
 	}
-  &__bars{
-    width: 100%;
-    &::after{
-      top: 13px;
-      width: 60%;
-    }
-    &::before{
-      top:27px;
-      width: 30%;
-      transition-delay: .1s;
-    }
-  }
+	&__bars {
+		width: 100%;
+		&::after {
+			top: 13px;
+			width: 60%;
+		}
+		&::before {
+			top: 27px;
+			width: 30%;
+			transition-delay: 0.1s;
+		}
+	}
+}
+
+//nav
+.nav {
+	position: fixed;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100%;
+	background-image: $blue-gradient-solid;
+	z-index: 100;
+	transform: translateX(100%);
+	transition: transform 0.5s;
+	&--active {
+		transform: translateX(0);
+	}
+
+	&__item {
+		position: relative;
+		display: block;
+		margin: 1em 0;
+		padding: 0.5em -2em;
+		color: $pure-white;
+		font-size: 2.8rem;
+		text-decoration: none;
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 3px;
+			height: 100%;
+			background-color: $pure-white;
+			content: '';
+			margin-left: -10px;
+			transform: scale(0);
+			transition: 0.3s;
+		}
+		&:hover::before {
+			transform: scale(1);
+		}
+	}
 }
 
 //header
-.header{
-  
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2em;
-  height: 75vh;
-  text-align: center;
-  color: $pure-white;
-  @include heroImages('../img/palm-3172367_640.jpg');
-  &__heading{
-    font-size: 4.8rem;
-    font-family: 'Dancing Script', cursive;
-    font-weight: 300;
-  }
-  &__text{
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-  }
-  &__btn{
-    background-color: $pure-white;
-    padding: 0.8em 1.6em;
-    font-size: 1.4rem;
-    background: $pure-white;
-    border: none;
-    border-radius: 8px;
-    color: $dark;
-    text-decoration: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    &::before{
-      background-color: $light-white;
-    }
-  }
+.header {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2em;
+	height: 75vh;
+	text-align: center;
+	color: $pure-white;
+	@include heroImages('../img/palm-3172367_640.jpg');
+	&__heading {
+		font-size: 4.8rem;
+		font-family: 'Dancing Script', cursive;
+		font-weight: 300;
+	}
+	&__text {
+		font-size: 1.4rem;
+		margin-bottom: 20px;
+	}
+	&__btn {
+		background-color: $pure-white;
+		padding: 0.8em 1.6em;
+		font-size: 1.4rem;
+		background: $pure-white;
+		border: none;
+		border-radius: 8px;
+		color: $dark;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+		&::before {
+			background-color: $light-white;
+		}
+	}
+}
+
+//MAIN
+//DREAMS SECTION
+.dreams {
+	&__box {
+		display: flex;
+		flex-direction: column;
+		margin: 2em 0;
+	}
+	&__img {
+		width: 100%;
+		margin-bottom: 1em;
+	}
+	&__title {
+		margin-bottom: 0.5em;
+	}
+	&__text {
+		font-size: 1.8rem;
+	}
+}
+
+//HERO-IMG
+.hero-img {
+	position: relative;
+	padding: 10em 2em;
+	@include heroImages('../img/hero-img.jpg');
+	text-align: center;
+	color: $pure-white;
+	overflow: hidden;
+	&__title {
+		font-size: 4.8rem;
+		font-family: 'Dancing Script', cursive;
+		font-weight: 300;
+		margin-bottom: 0.5em;
+	}
+	&__text {
+		padding: 1em 0;
+	}
+}
+
+// *************************************
+// MEDIA
+// *************************************
+@media (min-width: 768px) {
+	.white-block {
+		width: 45%;
+		height: 50px;
+	}
+	.header {
+		&__heading {
+			font-size: 6.6rem;
+		}
+		&__text {
+			font-size: 2.1rem;
+		}
+		&__btn {
+			font-size: 1.6rem;
+		}
+	}
+	.dreams {
+		&__text {
+			font-size: 1.8rem;
+		}
+	}
+	.hero-img {
+		padding: 30rem 2em;
+		hr {
+			margin: 0 auto;
+			width: 70%;
+		}
+		&__text {
+			font-size: 2.2rem;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.burger-btn {
+		top: 50px;
+		right: 50px;
+	}
+	.header {
+		background-image: $blue-gradient, url('../img/palm-3172367_1920.jpg');
+		&__heading {
+			font-size: 10rem;
+		}
+	}
+	.nav {
+		&__item {
+			font-size: 4.8rem;
+		}
+	}
+	.dreams {
+		&__box {
+			margin: 5em 0;
+			&-text {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				margin-bottom: 2.5em;
+			}
+		}
+		&__title {
+			font-size: 3.6rem;
+		}
+		&__text {
+			font-size: 2.2rem;
+		}
+	}
+
+	.hero-img {
+		padding: 30rem 2em;
+		background-image: $blue-gradient, url('../img/hero-img.jpg');
+
+		&__title {
+			font-size: 7.2rem;
+		}
+		hr {
+			width: 60%;
+			max-width: 900px;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.dreams {
+		&__box {
+			flex-direction: row;
+			justify-content: space-between;
+
+			&-text {
+				width: 55%;
+				&--right {
+					text-align: right;
+				}
+			}
+			&-img {
+				width: 40%;
+				min-width: 300px;
+				&--right {
+					order: 1;
+				}
+			}
+		}
+		&__img {
+			margin-bottom: 0;
+			max-height: 300px;
+		}
+	}
 }
